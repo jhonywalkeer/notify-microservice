@@ -3,7 +3,7 @@ info:
   description: |
     This is the documentation of the highly scalable microservice to handle all the notifications (email/SMS/WhatsApp) you would need to schedule for your small business contact which is present in [repository](https://github.com/jhonywalkeer/notification-microservice)
   version: 1.0.0
-  title: Notification Microservice
+  title: Notify Microservice
 servers:
   - url: https://localhost:port/api/v1/notify
     variables: {}

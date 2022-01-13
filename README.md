@@ -1,3 +1,7 @@
+<h1 align="center">
+    <img width="50%"  alt="Icon Repo" title="Notify Microsservice" src="./readme/assets/images/repo-icon.png" />
+</h1>
+
 ## 💻 Project summary
 
 This project is a highly scalable micro-service to handle all the notifications (Email/SMS/WhatsApp) that you would require to schedule for contact from your small-business. It uses Amazon's SQS queuing service, SendGrid's email API and Twilio WhatsApp and SMS API to schedule notifications. Support would be added for other service-providers as the project evolves.
