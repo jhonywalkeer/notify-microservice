@@ -1,0 +1,186 @@
+openapi: 3.0.0
+info:
+  description: |
+    This is the documentation of the highly scalable microservice to handle all the notifications (email/SMS/WhatsApp) you would need to schedule for your small business contact which is present in [repository](https://github.com/jhonywalkeer/notification-microservice)
+  version: 1.0.0
+  title: Notification Microservice
+servers:
+  - url: https://localhost:port/api/v1/notify
+    variables: {}
+paths:
+  /notify/email:
+    post:
+      tags:
+        - Notify
+      summary: Trigger notification emails
+      operationId: email
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Email'
+            example:
+              data:
+                - content:
+                    subject: Sample Email's Subject
+                    html: <p> Sample email's body</p>
+                  targets:
+                    - test@email.com
+                    - test2@email.com
+                - content:
+                    subject: Sample Email 2's Subject
+                    html: <p> Sample email 2's body</p>
+                  targets:
+                    - test@email.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /notify/whatsapp:
+    post:
+      tags:
+        - Notify
+      summary: Trigger notification Whatsapp
+      operationId: whatsapp
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Whatsapp'
+            example:
+              data:
+                - content:
+                    body: This is a sample message!
+                  targets:
+                    - countryCode: '+1'
+                      phone: '123456789'
+                    - countryCode: '+91'
+                      phone: '9876543211'
+                - content:
+                    body: This is another sample message!
+                  targets:
+                    - countryCode: '+1'
+                      phone: '123456789'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /notify/sms:
+    post:
+      tags:
+        - Notify
+      summary: Trigger notification SMS
+      operationId: sms
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SMS'
+            example:
+              data:
+                - content:
+                    body: This is a sample message!
+                  targets:
+                    - countryCode: '+1'
+                      phone: '123456789'
+                    - countryCode: '+91'
+                      phone: '9876543211'
+                - content:
+                    body: This is another sample message!
+                  targets:
+                    - countryCode: '+1'
+                      phone: '123456789'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    Email:
+      title: Email
+      required:
+        - subject
+        - html
+        - target (email)
+      type: object
+      properties:
+        subject:
+          type: string
+        html:
+          type: string
+        target:
+          type: string
+      example:
+        data:
+          - content:
+              subject: Test Email's Subject
+              html: <p> Test notify email </p>
+            targets:
+              - test@email.com
+              - test2@email.com
+    Whatsapp:
+      title: Whatsapp
+      required:
+        - body
+        - country
+        - phone
+      type: object
+      properties:
+        body:
+          type: string
+        countryCode:
+          type: string
+        phone:
+          type: string
+      example:
+        data:
+          - content:
+              body: This is a sample message!
+            targets:
+              - countryCode: '+1'
+                phone: '123456789'
+              - countryCode: '+91'
+                phone: '9876543211'
+    SMS:
+      title: SMS
+      required:
+        - subject
+        - html
+        - target (email)
+      type: object
+      properties:
+        body:
+          type: string
+        countyCode:
+          type: string
+        phone:
+          type: string
+      example:
+        data:
+          - content:
+              body: This is a sample message!
+            targets:
+              - countryCode: '+1'
+                phone: '123456789'
+              - countryCode: '+91'
+                phone: '9876543211'
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+  - httpBearer: []
+tags:
+  - name: Notify

@@ -23,7 +23,7 @@ Project was built using **Node.js**, AWS Services, Docker and the following depe
 
 - **[SQS Consumer](https://www.npmjs.com/package/sqs-consumer)** - Build SQS-based applications without the boilerplate. Just define an async function that handles the SQS message processing.
 
-- **[Twilio](https://www.npmjs.com/package/twilio)** -
+- **[Twilio](https://www.npmjs.com/package/twilio)** - Package to interact with the Twilio api to send messages by whatssap and SMS
 
 ## 🔖 How to use
 
@@ -57,3 +57,15 @@ Provide all the values as specified in `sample_env.sh`
 ```
 $ sudo docker-compose up -d
 ```
+
+The API has 3 routes, where you can learn more about them in its documentation in swagger that is generated when running the microservice
+
+| Method | Route            |
+| ------ | ---------------- |
+| POST   | /notify/email    |
+| POST   | /notify/whatsapp |
+| POST   | /notify/sms      |
+
+## 📖 License
+
+This project is under license from MIT. See the [LICENSE](LICENSE.md) file for more details.
